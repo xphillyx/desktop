@@ -1333,7 +1333,11 @@ export function getHTMLURL(endpoint: string): string {
   //  E.g., https://github.mycompany.com/api/v3 -> https://github.mycompany.com
   //
   // We need to normalize them.
-  if (endpoint === getDotComAPIEndpoint() && !envEndpoint) {
+  if (endpoint === getDotComAPIEndpoint()) {
+    if (envEndpoint !== undefined) {
+      return envEndpoint.replace('api.', '')
+    }
+
     return 'https://github.com'
   } else {
     const parsed = URL.parse(endpoint)
