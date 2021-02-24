@@ -29,6 +29,10 @@ export async function createCommit(
     'createCommit',
     {
       stdin: message,
+      env: {
+        DESKTOP_USERNAME: 'monalisa',
+        DESKTOP_ENDPOINT: 'http://api.github.localhost',
+      },
     }
   )
   return parseCommitSHA(result)
